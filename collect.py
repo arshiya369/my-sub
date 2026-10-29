@@ -50,7 +50,7 @@ def host_port(link):
 def is_alive(link):
     hp = host_port(link)
     if hp is None:
-        return True  # اگه پارس نشد، نگهش می‌داریم
+        return True
     try:
         with socket.create_connection(hp, timeout=TIMEOUT):
             return True
@@ -73,7 +73,7 @@ def main():
     alive = [c for c, ok in zip(configs, results) if ok]
     print(f"{len(alive)} کانفیگ سالم ماند")
 
-    if alive:  # اگه چیزی نموند، فایل قبلی رو خراب نکن
+    if alive:
         data = base64.b64encode("\n".join(alive).encode()).decode()
         with open("sub.txt", "w") as f:
             f.write(data)
